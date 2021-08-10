@@ -7,14 +7,14 @@ def get_data_from_input():
     pass
 
 
-def get_answer_1(password_database):
+def get_answer_1(puzzle_input):
     time_start = time.perf_counter()
 
     time_spent = time.perf_counter() - time_start
     return {"value": "", "time": time_spent}
 
 
-def get_answer_2(password_database):
+def get_answer_2(puzzle_input):
     time_start = time.perf_counter()
 
     time_spent = time.perf_counter() - time_start
@@ -39,9 +39,9 @@ def print_answers(answer_1, answer_2):
 
 
 def main():
-    password_database = get_data_from_input()
-    answer_1 = get_answer_1(password_database)
-    answer_2 = get_answer_2(password_database)
+    puzzle_input = get_data_from_input()
+    answer_1 = get_answer_1(puzzle_input)
+    answer_2 = get_answer_2(puzzle_input)
     print_answers(answer_1, answer_2)
 
 

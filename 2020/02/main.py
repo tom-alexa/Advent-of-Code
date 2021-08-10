@@ -7,7 +7,7 @@ def get_data_from_input():
     with open("2020/02/input", "r") as file:
         password_database = []
         for line in file.readlines():
-            terms, password_string = line.strip().split(":")
+            terms, password_string = map(lambda x: x.strip(), line.split(":"))
             key, letter = terms.split(" ")
             k_min, k_max = map(int, key.split("-"))
             password_database.append({"password": password_string, "terms": {"letter": letter, "key": {"min": k_min, "max": k_max}}})
@@ -41,9 +41,9 @@ def get_answer_2(password_database):
         k_max = password["terms"]["key"]["max"]
 
         contain = 0
-        if password_string[k_min] == letter:
+        if password_string[k_min-1] == letter:
             contain += 1
-        if password_string[k_max] == letter:
+        if password_string[k_max-1] == letter:
             contain += 1
         if contain == 1:
             valid_passwords.append(password)
@@ -70,9 +70,9 @@ def print_answers(answer_1, answer_2):
 
 
 def main():
-    password_database = get_data_from_input()
-    answer_1 = get_answer_1(password_database)
-    answer_2 = get_answer_2(password_database)
+    puzzle_input = get_data_from_input()
+    answer_1 = get_answer_1(puzzle_input)
+    answer_2 = get_answer_2(puzzle_input)
     print_answers(answer_1, answer_2)
 
 
