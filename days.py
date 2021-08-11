@@ -15,7 +15,7 @@ DAY_INDENTATION = " " * 8
 # days
 COMPLETED_DAYS = {
     2020: {
-        1, 2, 3, 4, 5, 6,
+        1, 2, 3, 4, 5, 6, 7,
     },
 }
 
@@ -45,7 +45,7 @@ def get_text_to_print(days):
                 if year != last_year:
                     last_year = year
                     text_to_print += f"\n{YEAR_INDENTATION}-> {last_year}\n"
-                text_to_print += f"{DAY_INDENTATION}> {day:>2}  >>  python {year}/{day:02}/main.py\n"
+                text_to_print += f"{DAY_INDENTATION}>  {day:>2}  < | python {year}/{day:02}/main.py\n"
     return text_to_print
 
 
