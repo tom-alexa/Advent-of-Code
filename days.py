@@ -15,7 +15,7 @@ DAY_INDENTATION = " " * 8
 # days
 COMPLETED_DAYS = {
     2020: {
-        1, 2, 3,
+        1, 2, 3, 4, 5,
     },
 }
 
