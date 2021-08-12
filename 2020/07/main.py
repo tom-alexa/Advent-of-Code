@@ -5,6 +5,10 @@ import time
 MY_BAG = "shiny gold bag"
 
 
+###########
+#  input  #
+###########
+
 def get_data_from_input():
     bags_in = {}
     bags_out = {}
@@ -42,6 +46,10 @@ def get_data_from_input():
     return {"in": bags_in, "out": bags_out}
 
 
+###############
+#  functions  #
+###############
+
 def get_bigger_bags(bag_name, bags_out, bigger_bags):
     for bigger_bag in bags_out[bag_name]:
         bigger_bags.add(bigger_bag)
@@ -58,6 +66,10 @@ def get_smaller_bags(bag_name, bags_in, smaller_bags):
     return smaller_bags
 
 
+#############
+#  answers  #
+#############
+
 def get_answer_1(bags):
     time_start = time.perf_counter()
     bigger_bags = get_bigger_bags(MY_BAG, bags["out"], set())
@@ -71,6 +83,10 @@ def get_answer_2(bags):
     time_spent = time.perf_counter() - time_start
     return {"value": smaller_bags["total"], "time": time_spent}
 
+
+###########
+#  print  #
+###########
 
 def print_answers(answer_1, answer_2):
     to_miliseconds = 1000
@@ -88,6 +104,10 @@ def print_answers(answer_1, answer_2):
     print(f"{indetation*2}Answer 1: {answer_1_value}{lenght_to_add_1} | {answer_1_time:.3f} ms")
     print(f"{indetation*2}Answer 2: {answer_2_value}{lenght_to_add_2} | {answer_2_time:.3f} ms\n")
 
+
+##########
+#  main  #
+##########
 
 def main():
     puzzle_input = get_data_from_input()

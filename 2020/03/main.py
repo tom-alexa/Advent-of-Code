@@ -6,6 +6,10 @@ JUMP_1 = (3, 1)
 JUMPS = {(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)}
 
 
+###########
+#  input  #
+###########
+
 def get_data_from_input():
     grid = []
     with open("2020/03/input", "r") as file:
@@ -13,6 +17,10 @@ def get_data_from_input():
             grid.append(line.strip())
     return grid
 
+
+###############
+#  functions  #
+###############
 
 def get_tree_encounters(grid, x_jump, y_jump):
     trees = 0
@@ -27,6 +35,9 @@ def get_tree_encounters(grid, x_jump, y_jump):
     return trees
 
 
+#############
+#  answers  #
+#############
 
 def get_answer_1(grid):
     time_start = time.perf_counter()
@@ -44,6 +55,10 @@ def get_answer_2(grid):
     return {"value": trees, "time": time_spent}
 
 
+###########
+#  print  #
+###########
+
 def print_answers(answer_1, answer_2):
     to_miliseconds = 1000
     answer_1_value = answer_1["value"]
@@ -60,6 +75,10 @@ def print_answers(answer_1, answer_2):
     print(f"{indetation*2}Answer 1: {answer_1_value}{lenght_to_add_1} | {answer_1_time:.3f} ms")
     print(f"{indetation*2}Answer 2: {answer_2_value}{lenght_to_add_2} | {answer_2_time:.3f} ms\n")
 
+
+##########
+#  main  #
+##########
 
 def main():
     puzzle_input = get_data_from_input()

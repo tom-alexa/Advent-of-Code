@@ -3,6 +3,10 @@ import time
 # --- Day 2: Password Philosophy ---
 
 
+###########
+#  input  #
+###########
+
 def get_data_from_input():
     with open("2020/02/input", "r") as file:
         password_database = []
@@ -13,6 +17,10 @@ def get_data_from_input():
             password_database.append({"password": password_string, "terms": {"letter": letter, "key": {"min": k_min, "max": k_max}}})
     return password_database
 
+
+#############
+#  answers  #
+#############
 
 def get_answer_1(password_database):
     time_start = time.perf_counter()
@@ -52,6 +60,10 @@ def get_answer_2(password_database):
     return {"value": len(valid_passwords), "time": time_spent}
 
 
+##########
+#  main  #
+##########
+
 def print_answers(answer_1, answer_2):
     to_miliseconds = 1000
     answer_1_value = answer_1["value"]
@@ -68,6 +80,10 @@ def print_answers(answer_1, answer_2):
     print(f"{indetation*2}Answer 1: {answer_1_value}{lenght_to_add_1} | {answer_1_time:.3f} ms")
     print(f"{indetation*2}Answer 2: {answer_2_value}{lenght_to_add_2} | {answer_2_time:.3f} ms\n")
 
+
+##########
+#  main  #
+##########
 
 def main():
     puzzle_input = get_data_from_input()

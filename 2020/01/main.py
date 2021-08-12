@@ -5,6 +5,10 @@ import time
 SUM_TO_GET = 2020
 
 
+###########
+#  input  #
+###########
+
 def get_data_from_input():
     with open("2020/01/input", "r") as file:
         expense_report = set()
@@ -13,6 +17,10 @@ def get_data_from_input():
             expense_report.add(expense)
     return expense_report
 
+
+#############
+#  answers  #
+#############
 
 def get_answer_1(expense_report):
     time_start = time.perf_counter()
@@ -40,6 +48,10 @@ def get_answer_2(expense_report):
         used_expenses.add(expense)
 
 
+###########
+#  print  #
+###########
+
 def print_answers(answer_1, answer_2):
     to_miliseconds = 1000
     answer_1_value = answer_1["value"]
@@ -56,6 +68,10 @@ def print_answers(answer_1, answer_2):
     print(f"{indetation*2}Answer 1: {answer_1_value}{lenght_to_add_1} | {answer_1_time:.3f} ms")
     print(f"{indetation*2}Answer 2: {answer_2_value}{lenght_to_add_2} | {answer_2_time:.3f} ms\n")
 
+
+##########
+#  main  #
+##########
 
 def main():
     puzzle_input = get_data_from_input()

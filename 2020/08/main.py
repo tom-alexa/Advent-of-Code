@@ -1,8 +1,11 @@
-from sys import int_info
 import time
 
 # --- Day 8: Handheld Halting ---
 
+
+###########
+#  input  #
+###########
 
 def get_data_from_input():
     program = []
@@ -13,30 +16,36 @@ def get_data_from_input():
     return program
 
 
+###############
+#  functions  #
+###############
+
+def do_instructions(program, current_data):
+    current_data["used"].add(current_data["index"])
+    instruction = program[current_data["index"]]
+    operation = instruction["operation"]
+    argument = instruction["argument"]
+    if operation == "acc":
+        current_data["accumulator"] += argument
+    elif operation == "jmp":
+        current_data["index"] += argument
+        return
+    current_data["index"] += 1
+
+
+#############
+#  answers  #
+#############
+
 def get_answer_1(program):
     time_start = time.perf_counter()
-    used_instructions = set()
-    accumulator = 0
-    index = 0
+    current_data = {"accumulator": 0, "index": 0, "used": set()}
     while True:
-        if index in used_instructions:
+        if current_data["index"] in current_data["used"]:
             break
-
-        instruction = program[index]
-        operation = instruction["operation"]
-        argument = instruction["argument"]
-
-        if operation == "acc":
-            accumulator += argument
-        elif operation == "jmp":
-            index += argument
-            continue
-
-        used_instructions.add(index)
-        index += 1
-
+        do_instructions(program, current_data)
     time_spent = time.perf_counter() - time_start
-    return {"value": accumulator, "time": time_spent}
+    return {"value": current_data["accumulator"], "time": time_spent}
 
 
 def get_answer_2(program):
@@ -52,35 +61,27 @@ def get_answer_2(program):
         else:
             continue
 
-        used_instructions = set()
-        accumulator = 0
-        index = 0
+        current_data = {"accumulator": 0, "index": 0, "used": set()}
         infinite = True
         while True:
-            if index >= program_lenght:
+            if current_data["index"] >= program_lenght:
                 infinite = False
                 break
-            if index in used_instructions:
+            if current_data["index"] in current_data["used"]:
                 break
-
-            used_instructions.add(index)
-            instruction = program[index]
-            operation = instruction["operation"]
-            argument = instruction["argument"]
-            if operation == "acc":
-                accumulator += argument
-            elif operation == "jmp":
-                index += argument
-                continue
-            index += 1
+            do_instructions(program, current_data)
 
         if not infinite:
             break
         instruction_to_change["operation"] = changed
 
     time_spent = time.perf_counter() - time_start
-    return {"value": accumulator, "time": time_spent}
+    return {"value": current_data["accumulator"], "time": time_spent}
 
+
+###########
+#  print  #
+###########
 
 def print_answers(answer_1, answer_2):
     to_miliseconds = 1000
@@ -98,6 +99,10 @@ def print_answers(answer_1, answer_2):
     print(f"{indetation*2}Answer 1: {answer_1_value}{lenght_to_add_1} | {answer_1_time:.3f} ms")
     print(f"{indetation*2}Answer 2: {answer_2_value}{lenght_to_add_2} | {answer_2_time:.3f} ms\n")
 
+
+##########
+#  main  #
+##########
 
 def main():
     puzzle_input = get_data_from_input()

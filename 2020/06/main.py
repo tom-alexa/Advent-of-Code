@@ -3,6 +3,10 @@ import time
 # --- Day 6: Custom Customs ---
 
 
+###########
+#  input  #
+###########
+
 def get_data_from_input():
     groups = []
     with open("2020/06/input", "r") as file:
@@ -16,6 +20,10 @@ def get_data_from_input():
             groups.append(group)
     return groups
 
+
+#############
+#  answers  #
+#############
 
 def get_answer_1(groups):
     time_start = time.perf_counter()
@@ -55,6 +63,10 @@ def get_answer_2(groups):
     return {"value": common_answers["count"], "time": time_spent}
 
 
+###########
+#  print  #
+###########
+
 def print_answers(answer_1, answer_2):
     to_miliseconds = 1000
     answer_1_value = answer_1["value"]
@@ -71,6 +83,10 @@ def print_answers(answer_1, answer_2):
     print(f"{indetation*2}Answer 1: {answer_1_value}{lenght_to_add_1} | {answer_1_time:.3f} ms")
     print(f"{indetation*2}Answer 2: {answer_2_value}{lenght_to_add_2} | {answer_2_time:.3f} ms\n")
 
+
+##########
+#  main  #
+##########
 
 def main():
     puzzle_input = get_data_from_input()

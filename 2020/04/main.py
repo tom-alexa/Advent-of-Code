@@ -13,6 +13,10 @@ EYE_COLOR = {"amb", "blu", "brn", "gry", "grn", "hzl", "oth"}
 PASSPORT_ID = {"lenght": 9}
 
 
+###########
+#  input  #
+###########
+
 def get_data_from_input():
     passports = []
     with open("2020/04/input", "r") as file:
@@ -31,6 +35,10 @@ def get_data_from_input():
             passports.append(passport)
     return passports
 
+
+###############
+#  functions  #
+###############
 
 def check_byr(birth_yr):
     if not birth_yr:
@@ -103,6 +111,10 @@ def check_pid(pssprt_id):
     return True
 
 
+#############
+#  answers  #
+#############
+
 def get_answer_1(passports):
     time_start = time.perf_counter()
     valid_passports = []
@@ -142,6 +154,10 @@ def get_answer_2(passports):
     return {"value": len(valid_passports), "time": time_spent}
 
 
+###########
+#  print  #
+###########
+
 def print_answers(answer_1, answer_2):
     to_miliseconds = 1000
     answer_1_value = answer_1["value"]
@@ -158,6 +174,10 @@ def print_answers(answer_1, answer_2):
     print(f"{indetation*2}Answer 1: {answer_1_value}{lenght_to_add_1} | {answer_1_time:.3f} ms")
     print(f"{indetation*2}Answer 2: {answer_2_value}{lenght_to_add_2} | {answer_2_time:.3f} ms\n")
 
+
+##########
+#  main  #
+##########
 
 def main():
     puzzle_input = get_data_from_input()

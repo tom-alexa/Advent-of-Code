@@ -3,9 +3,22 @@ import time
 # ---  ---
 
 
+###########
+#  input  #
+###########
+
 def get_data_from_input():
     pass
 
+
+###############
+#  functions  #
+###############
+
+
+#############
+#  answers  #
+#############
 
 def get_answer_1(puzzle_input):
     time_start = time.perf_counter()
@@ -20,6 +33,10 @@ def get_answer_2(puzzle_input):
     time_spent = time.perf_counter() - time_start
     return {"value": "", "time": time_spent}
 
+
+###########
+#  print  #
+###########
 
 def print_answers(answer_1, answer_2):
     to_miliseconds = 1000
@@ -37,6 +54,10 @@ def print_answers(answer_1, answer_2):
     print(f"{indetation*2}Answer 1: {answer_1_value}{lenght_to_add_1} | {answer_1_time:.3f} ms")
     print(f"{indetation*2}Answer 2: {answer_2_value}{lenght_to_add_2} | {answer_2_time:.3f} ms\n")
 
+
+##########
+#  main  #
+##########
 
 def main():
     puzzle_input = get_data_from_input()

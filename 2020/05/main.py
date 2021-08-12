@@ -3,6 +3,10 @@ import time
 # --- Day 5: Binary Boarding ---
 
 
+###########
+#  input  #
+###########
+
 def get_data_from_input():
     binary_seats = set()
     with open("2020/05/input", "r") as file:
@@ -11,6 +15,10 @@ def get_data_from_input():
             binary_seats.add(seat)
     return binary_seats
 
+
+###############
+#  functions  #
+###############
 
 def get_seats_and_max_min_id(binary_seats):
     seats = {}
@@ -33,6 +41,10 @@ def get_seats_and_max_min_id(binary_seats):
     return {"seats": seats, "max_id": max_id, "min_id": min_id}
 
 
+#############
+#  answers  #
+#############
+
 def get_answer_1(binary_seats):
     time_start = time.perf_counter()
     max_id = get_seats_and_max_min_id(binary_seats)["max_id"]
@@ -54,6 +66,10 @@ def get_answer_2(binary_seats):
     return {"value": my_seat_id, "time": time_spent}
 
 
+###########
+#  print  #
+###########
+
 def print_answers(answer_1, answer_2):
     to_miliseconds = 1000
     answer_1_value = answer_1["value"]
@@ -70,6 +86,10 @@ def print_answers(answer_1, answer_2):
     print(f"{indetation*2}Answer 1: {answer_1_value}{lenght_to_add_1} | {answer_1_time:.3f} ms")
     print(f"{indetation*2}Answer 2: {answer_2_value}{lenght_to_add_2} | {answer_2_time:.3f} ms\n")
 
+
+##########
+#  main  #
+##########
 
 def main():
     puzzle_input = get_data_from_input()
