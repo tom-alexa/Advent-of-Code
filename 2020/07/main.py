@@ -50,7 +50,6 @@ def get_bigger_bags(bag_name, bags_out, bigger_bags):
 
 
 def get_smaller_bags(bag_name, bags_in, smaller_bags):
-
     for smaller_bag in bags_in[bag_name]:
         smaller_bags["bags"].append(smaller_bag)
         smaller_bags["total"] += smaller_bag["total"]
