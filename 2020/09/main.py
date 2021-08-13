@@ -41,8 +41,13 @@ def get_invalid_number(numbers):
 
 def add_number(added_numbers, numbers):
     added_numbers["index"]["max"] += 1
-    added_numbers["numbers"].append(numbers[added_numbers["index"]["max"]])
-    added_numbers["sum"] += numbers[added_numbers["index"]["max"]]
+    new_number = numbers[added_numbers["index"]["max"]]
+    added_numbers["numbers"].append(new_number)
+    added_numbers["sum"] += new_number
+    if new_number < added_numbers["value"]["min"]:
+        added_numbers["value"]["min"] = new_number
+    elif new_number > added_numbers["value"]["max"]:
+        added_numbers["value"]["max"] = new_number
 
 
 def remove_number(added_numbers, numbers):
@@ -65,14 +70,14 @@ def get_answer_1(numbers):
 def get_answer_2(numbers):
     time_start = time.perf_counter()
     to_get = get_invalid_number(numbers)
-    added_numbers = {"index": {"min": 0, "max": -1}, "numbers": [], "sum": 0}
+    added_numbers = {"index": {"min": 0, "max": -1}, "numbers": [], "sum": 0, "value": {"min": float("inf"), "max": 0}}
     while added_numbers["sum"] != to_get:
         if added_numbers["sum"] < to_get:
             add_number(added_numbers, numbers)
         elif added_numbers["sum"] > to_get:
             remove_number(added_numbers, numbers)
     time_spent = time.perf_counter() - time_start
-    return {"value": min(added_numbers["numbers"]) + max(added_numbers["numbers"]), "time": time_spent}
+    return {"value": added_numbers["value"]["min"] + added_numbers["value"]["max"], "time": time_spent}
 
 
 ###########
