@@ -1,8 +1,17 @@
 import time
+from pathlib import PurePath
 
 # --- Day 10: Adapter Array ---
 
-CHARGING_OUTLET = 0
+
+###############
+#  constants  #
+###############
+
+YEAR = 2020
+DAY = 10
+
+INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input")
 
 
 ###########
@@ -10,8 +19,8 @@ CHARGING_OUTLET = 0
 ###########
 
 def get_data_from_input():
-    with open("2020/10/input") as file:
-        return [int(line.strip()) for line in file.readlines()]
+    with open(INPUT_FILE, "r") as file:
+        return [ int(line.strip()) for line in file.readlines() ]
 
 
 ###############
@@ -26,7 +35,7 @@ def multiple(array_counter):
 
 def get_reducer(power, reducer):
     reducer += 2**(power - 3)
-    return get_reducer(power - 1, reducer) if power >= 4 else reducer
+    return get_reducer(power - 1, reducer) if (power - 1) >= 3 else reducer
 
 
 #############
@@ -37,7 +46,7 @@ def get_answer_1(adapters):
     time_start = time.perf_counter()
     adapters = sorted(adapters)
     joltage = {"adaptars": {"joltage": adapters, "min": adapters[0], "max": adapters[-1]}, "device": adapters[-1] + 3, "differences": {1: 0, 2: 0, 3:0}}
-    last = CHARGING_OUTLET
+    last = 0
     for adapter in adapters:
         joltage["differences"][adapter - last] += 1
         last = adapter
@@ -81,7 +90,7 @@ def print_answers(answer_1, answer_2):
     lenght_to_add_2 = " " * to_add if len(str(answer_1_value)) > len(str(answer_2_value)) else " " * 0
 
     indetation = " " * 2
-    print(f"\n{indetation}2020 > 10")
+    print(f"\n{indetation}{YEAR} > {DAY}")
     print(f"{indetation*2}Answer 1: {answer_1_value}{lenght_to_add_1} | {answer_1_time:.3f} ms")
     print(f"{indetation*2}Answer 2: {answer_2_value}{lenght_to_add_2} | {answer_2_time:.3f} ms\n")
 

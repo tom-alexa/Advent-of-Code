@@ -15,7 +15,7 @@ DAY_INDENTATION = " " * 8
 # days
 COMPLETED_DAYS = {
     2020: {
-        1, 2, 3, 4, 5, 6, 7, 8, 9,
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
     },
 }
 
@@ -39,14 +39,21 @@ def update_by_completed_days(days):
 def get_text_to_print(days):
     text_to_print = ""
     last_year = None
+    line_breaks = 0
     for year in days:
         for day in days[year]:
             if days[year][day]:
                 if year != last_year:
                     last_year = year
-                    text_to_print += f"\n{YEAR_INDENTATION}-> {last_year}\n"
-                text_to_print += f"{DAY_INDENTATION}>  {day:>2}  < | python {year}/{day:02}/main.py\n"
-    return text_to_print
+                    text_to_print += f"\n\n{YEAR_INDENTATION}-> {last_year}\n{DAY_INDENTATION}> "
+                if day > 10 and line_breaks < 1:
+                    line_breaks += 1
+                    text_to_print += f"\n{DAY_INDENTATION}> "
+                elif day > 20 and line_breaks < 2:
+                    line_breaks += 1
+                    text_to_print += f"\n{DAY_INDENTATION}> "
+                text_to_print += f"{day:>2} | "
+    return text_to_print + "\n"
 
 
 def main():
