@@ -38,8 +38,8 @@ def get_editor(data):
         while True:
             editor = input(f"{INDENTATION*2}Editor: ")
             if editor:
-                data["editor"] = editor
                 break
+    data["editor"] = editor
     return editor
 
 

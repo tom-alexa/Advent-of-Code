@@ -44,7 +44,6 @@ def get_file(data, file_name):
             try:
                 year = int(input(f"{INDENTATION*2}Year: "))
                 if year:
-                    data["year"] = year
                     break
             except ValueError:
                 print(f"{INDENTATION*3}↑ has to be a number!\n")
@@ -61,10 +60,11 @@ def get_file(data, file_name):
             try:
                 day = int(input(f"{INDENTATION*2}Day: "))
                 if day:
-                    data["day"] = day
                     break
             except ValueError:
                 print(f"{INDENTATION*3}↑ has to be a number!\n")
+    data["year"] = year
+    data["day"] = day
     return PurePath(f"{year:04}/{day:02}/{file_name}")
 
 
