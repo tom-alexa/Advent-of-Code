@@ -31,7 +31,7 @@ def get_data_from_input():
 #  functions  #
 ###############
 
-def check_seat_one(row, column, layout):
+def check_seat_1(row, column, layout):
     letter = layout[row][column]
     if letter == ".":
         return letter
@@ -50,7 +50,7 @@ def check_seat_one(row, column, layout):
     return "#"
 
 
-def check_seat_two(row, column, layout):
+def check_seat_2(row, column, layout):
     letter = layout[row][column]
     if letter == ".":
         return letter
@@ -92,9 +92,9 @@ def get_occupied_seats(part, seat_layout):
             row_to_add = ""
             for column in range(len(seat_layout[0])):
                 if part == 1:
-                    letter_to_add = check_seat_one(row, column, new_layout)
+                    letter_to_add = check_seat_1(row, column, new_layout)
                 else:
-                    letter_to_add = check_seat_two(row, column, new_layout)
+                    letter_to_add = check_seat_2(row, column, new_layout)
                 row_to_add += letter_to_add
                 if letter_to_add == "#":
                     occupied_seats += 1

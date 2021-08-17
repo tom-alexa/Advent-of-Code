@@ -36,7 +36,7 @@ def get_data_from_input():
 #  functions  #
 ###############
 
-def update_position_one(position, instruction):
+def update_position_1(position, instruction):
     action = instruction["action"]
     value = instruction["value"]
     direction = position["direction"]
@@ -63,7 +63,7 @@ def update_position_one(position, instruction):
             position["x"] -= value
 
 
-def update_position_two(position, instruction):
+def update_position_2(position, instruction):
     action = instruction["action"]
     value = instruction["value"]
     waypoint_x = position["waypoint"]["x"]
@@ -101,7 +101,7 @@ def get_answer_1(instructions):
     time_start = time.perf_counter()
     position = {"direction": 90, "x": START_POS[0], "y": START_POS[1]}
     for instruction in instructions:
-        update_position_one(position, instruction)
+        update_position_1(position, instruction)
     time_spent = time.perf_counter() - time_start
     return {"value": abs(position["x"]) + abs(position["y"]), "time": time_spent}
 
@@ -110,7 +110,7 @@ def get_answer_2(instructions):
     time_start = time.perf_counter()
     position = {"x": START_POS[0], "y": START_POS[1], "waypoint": {"x": WAYPOINT_START[0], "y": WAYPOINT_START[1]}}
     for instruction in instructions:
-        update_position_two(position, instruction)
+        update_position_2(position, instruction)
     time_spent = time.perf_counter() - time_start
     return {"value": abs(position["x"] + abs(position["y"])), "time": time_spent}
 
