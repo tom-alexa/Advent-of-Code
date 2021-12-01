@@ -13,7 +13,7 @@ DAY = 9
 
 INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input")
 
-PREAMBLE_LENGHT = 25
+PREAMBLE_LENGTH = 25
 
 
 ###########
@@ -42,8 +42,8 @@ def is_valid(number, preamble):
 
 
 def get_invalid_number(numbers):
-    preamble = numbers[:PREAMBLE_LENGHT]
-    for number in numbers[PREAMBLE_LENGHT:]:
+    preamble = numbers[:PREAMBLE_LENGTH]
+    for number in numbers[PREAMBLE_LENGTH:]:
         if not is_valid(number, preamble):
             return number
         preamble = preamble[1:]
@@ -96,20 +96,20 @@ def get_answer_2(numbers):
 ###########
 
 def print_answers(answer_1, answer_2):
-    to_miliseconds = 1000
+    to_milliseconds = 1000
     answer_1_value = answer_1["value"]
     answer_2_value = answer_2["value"]
-    answer_1_time = round(answer_1["time"] * to_miliseconds, 3)
-    answer_2_time = round(answer_2["time"] * to_miliseconds, 3)
+    answer_1_time = round(answer_1["time"] * to_milliseconds, 3)
+    answer_2_time = round(answer_2["time"] * to_milliseconds, 3)
 
     to_add = abs(len(str(answer_1_value)) - len(str(answer_2_value)))
-    lenght_to_add_1 = " " * to_add if len(str(answer_1_value)) < len(str(answer_2_value)) else " " * 0
-    lenght_to_add_2 = " " * to_add if len(str(answer_1_value)) > len(str(answer_2_value)) else " " * 0
+    length_to_add_1 = " " * to_add if len(str(answer_1_value)) < len(str(answer_2_value)) else " " * 0
+    length_to_add_2 = " " * to_add if len(str(answer_1_value)) > len(str(answer_2_value)) else " " * 0
 
-    indetation = " " * 2
-    print(f"\n{indetation}{YEAR} > {DAY}")
-    print(f"{indetation*2}Answer 1: {answer_1_value}{lenght_to_add_1} | {answer_1_time:.3f} ms")
-    print(f"{indetation*2}Answer 2: {answer_2_value}{lenght_to_add_2} | {answer_2_time:.3f} ms\n")
+    indentation = " " * 2
+    print(f"\n{indentation}{YEAR} > {DAY}")
+    print(f"{indentation*2}Answer 1: {answer_1_value}{length_to_add_1} | {answer_1_time:.3f} ms")
+    print(f"{indentation*2}Answer 2: {answer_2_value}{length_to_add_2} | {answer_2_time:.3f} ms\n")
 
 
 ##########

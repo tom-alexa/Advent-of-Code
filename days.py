@@ -3,7 +3,7 @@
 
 # constants
 FIRST_YEAR = 2015
-LAST_YEAR = 2020
+LAST_YEAR = 2021
 
 FIRST_DAY = 1
 LAST_DAY = 25
@@ -15,7 +15,10 @@ DAY_INDENTATION = " " * 8
 # days
 COMPLETED_DAYS = {
     2020: {
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+    },
+    2021: {
+        1
     },
 }
 

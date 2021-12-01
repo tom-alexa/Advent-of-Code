@@ -1,1 +1,6 @@
-__pycache__
+
+# cache originated by import
+__pycache__/
+
+# cache from IDE
+.idea/

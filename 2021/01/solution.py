@@ -1,15 +1,15 @@
 import time
 from pathlib import PurePath
 
-# --- Day 6: Custom Customs ---
+# --- Day 1: Sonar Sweep ---
 
 
 ###############
 #  constants  #
 ###############
 
-YEAR = 2020
-DAY = 6
+YEAR = 2021
+DAY = 1
 
 INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input")
 
@@ -19,59 +19,51 @@ INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input")
 ###########
 
 def get_data_from_input():
-    groups = []
     with open(INPUT_FILE, "r") as file:
-        groups_dirty = file.read().split("\n\n")
-        for group_dirty in groups_dirty:
-            group = []
-            group_modify = group_dirty.split("\n")
-            for person in group_modify:
-                if person:
-                    group.append(person)
-            groups.append(group)
-    return groups
+        depth = list(map(lambda x: int(x.strip()), file.readlines()))
+    return depth
+
+
+###############
+#  functions  #
+###############
 
 
 #############
 #  answers  #
 #############
 
-def get_answer_1(groups):
+def get_answer_1(depth):
     time_start = time.perf_counter()
-    total_answers = {"answers": [], "count": 0}
-    for group in groups:
-        answers = set()
-        for person in group:
-            for answer in person:
-                if answer not in answers:
-                    answers.add(answer)
-        total_answers["answers"].append(answers)
-        total_answers["count"] += len(answers)
+
+    increased = -1
+    previous = 0
+    for d in depth:
+        if d > previous:
+            increased += 1
+        previous = d
+
     time_spent = time.perf_counter() - time_start
-    return {"value": total_answers["count"], "time": time_spent}
+    return {"value": increased, "time": time_spent}
 
 
-def get_answer_2(groups):
+def get_answer_2(depth):
     time_start = time.perf_counter()
-    common_answers = {"answers": [], "count": 0}
-    for group in groups:
-        first = True
-        answers = set()
-        for person in group:
-            if first:
-                for answer in person:
-                    answers.add(answer)
-            else:
-                valid_answers = set()
-                for answer in answers:
-                    if answer in person:
-                        valid_answers.add(answer)
-                answers = valid_answers.copy()
-            first = False
-        common_answers["answers"].append(answers)
-        common_answers["count"] += len(answers)
+
+    total_sum = depth[0] + depth[1] + depth[2]
+    min_index = 0
+    max_index = 2
+    increased = 0
+    for _ in range(len(depth) - 3):
+        current_sum = total_sum - depth[min_index] + depth[max_index + 1]
+        if current_sum > total_sum:
+            increased += 1
+        total_sum = current_sum
+        min_index += 1
+        max_index += 1
+
     time_spent = time.perf_counter() - time_start
-    return {"value": common_answers["count"], "time": time_spent}
+    return {"value": increased, "time": time_spent}
 
 
 ###########

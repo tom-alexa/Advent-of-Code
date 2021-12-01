@@ -21,7 +21,7 @@ ISSUE_YEAR = {"min": 2010, "max": 2020}
 EXPIRATION_YEAR = {"min": 2020, "max": 2030}
 HEIGHT = {"cm": {"min": 150, "max": 193}, "in": {"min": 59, "max": 76}}
 EYE_COLOR = {"amb", "blu", "brn", "gry", "grn", "hzl", "oth"}
-PASSPORT_ID = {"lenght": 9}
+PASSPORT_ID = {"length": 9}
 
 
 ###########
@@ -39,9 +39,9 @@ def get_data_from_input():
             property_dirty = current_passport.split("\n")
             for property_half_dirty in property_dirty:
                 property_almost = property_half_dirty.split(" ")
-                for property in property_almost:
-                    if property:
-                        key, value = property.split(":")
+                for passport_property in property_almost:
+                    if passport_property:
+                        key, value = passport_property.split(":")
                         passport[key] = value
             passports.append(passport)
     return passports
@@ -108,6 +108,7 @@ def check_hcl(hair_clr):
             return False
     return True
 
+
 def check_ecl(eye_clr):
     if eye_clr not in EYE_COLOR:
         return False
@@ -131,8 +132,8 @@ def get_answer_1(passports):
     valid_passports = []
     for passport in passports:
         valid = True
-        for property in passport:
-            if not passport[property] and property not in NOT_COMPULSORY_PROPERTIES:
+        for passport_property in passport:
+            if not passport[passport_property] and passport_property not in NOT_COMPULSORY_PROPERTIES:
                 valid = False
                 break
         if valid:
@@ -170,20 +171,20 @@ def get_answer_2(passports):
 ###########
 
 def print_answers(answer_1, answer_2):
-    to_miliseconds = 1000
+    to_milliseconds = 1000
     answer_1_value = answer_1["value"]
     answer_2_value = answer_2["value"]
-    answer_1_time = round(answer_1["time"] * to_miliseconds, 3)
-    answer_2_time = round(answer_2["time"] * to_miliseconds, 3)
+    answer_1_time = round(answer_1["time"] * to_milliseconds, 3)
+    answer_2_time = round(answer_2["time"] * to_milliseconds, 3)
 
     to_add = abs(len(str(answer_1_value)) - len(str(answer_2_value)))
-    lenght_to_add_1 = " " * to_add if len(str(answer_1_value)) < len(str(answer_2_value)) else " " * 0
-    lenght_to_add_2 = " " * to_add if len(str(answer_1_value)) > len(str(answer_2_value)) else " " * 0
+    length_to_add_1 = " " * to_add if len(str(answer_1_value)) < len(str(answer_2_value)) else " " * 0
+    length_to_add_2 = " " * to_add if len(str(answer_1_value)) > len(str(answer_2_value)) else " " * 0
 
-    indetation = " " * 2
-    print(f"\n{indetation}{YEAR} > {DAY}")
-    print(f"{indetation*2}Answer 1: {answer_1_value}{lenght_to_add_1} | {answer_1_time:.3f} ms")
-    print(f"{indetation*2}Answer 2: {answer_2_value}{lenght_to_add_2} | {answer_2_time:.3f} ms\n")
+    indentation = " " * 2
+    print(f"\n{indentation}{YEAR} > {DAY}")
+    print(f"{indentation*2}Answer 1: {answer_1_value}{length_to_add_1} | {answer_1_time:.3f} ms")
+    print(f"{indentation*2}Answer 2: {answer_2_value}{length_to_add_2} | {answer_2_time:.3f} ms\n")
 
 
 ##########

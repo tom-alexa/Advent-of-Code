@@ -128,25 +128,25 @@ def get_answer_2(seat_layout):
 ###########
 
 def print_estimated_time():
-    indetation = " " * 2
-    print(f"\n{indetation*3}Estimated time: {ESTIMATED_TIME}")
+    indentation = " " * 2
+    print(f"\n{indentation*3}Estimated time: {ESTIMATED_TIME}")
 
 
 def print_answer_1(answer_1):
     answer_1_value = answer_1["value"]
     answer_1_time = round(answer_1["time"], 3)
 
-    indetation = " " * 2
-    print(f"\n{indetation}{YEAR} > {DAY}")
-    print(f"{indetation*2}Answer 1: {answer_1_value} | {answer_1_time:.3f} sec")
+    indentation = " " * 2
+    print(f"\n{indentation}{YEAR} > {DAY}")
+    print(f"{indentation*2}Answer 1: {answer_1_value} | {answer_1_time:.3f} sec")
 
 
 def print_answer_2(answer_2):
     answer_2_value = answer_2["value"]
     answer_2_time = round(answer_2["time"], 3)
 
-    indetation = " " * 2
-    print(f"{indetation*2}Answer 2: {answer_2_value} | {answer_2_time:.3f} sec\n")
+    indentation = " " * 2
+    print(f"{indentation*2}Answer 2: {answer_2_value} | {answer_2_time:.3f} sec\n")
 
 
 ##########

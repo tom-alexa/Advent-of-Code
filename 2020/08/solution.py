@@ -61,7 +61,7 @@ def get_answer_1(program):
 
 def get_answer_2(program):
     time_start = time.perf_counter()
-    program_lenght = len(program)
+    program_length = len(program)
     for instruction_to_change in program:
         if instruction_to_change["operation"] == "jmp":
             instruction_to_change["operation"] = "nop"
@@ -75,7 +75,7 @@ def get_answer_2(program):
         current_data = {"accumulator": 0, "index": 0, "used": set()}
         infinite = True
         while True:
-            if current_data["index"] >= program_lenght:
+            if current_data["index"] >= program_length:
                 infinite = False
                 break
             if current_data["index"] in current_data["used"]:
@@ -95,20 +95,20 @@ def get_answer_2(program):
 ###########
 
 def print_answers(answer_1, answer_2):
-    to_miliseconds = 1000
+    to_milliseconds = 1000
     answer_1_value = answer_1["value"]
     answer_2_value = answer_2["value"]
-    answer_1_time = round(answer_1["time"] * to_miliseconds, 3)
-    answer_2_time = round(answer_2["time"] * to_miliseconds, 3)
+    answer_1_time = round(answer_1["time"] * to_milliseconds, 3)
+    answer_2_time = round(answer_2["time"] * to_milliseconds, 3)
 
     to_add = abs(len(str(answer_1_value)) - len(str(answer_2_value)))
-    lenght_to_add_1 = " " * to_add if len(str(answer_1_value)) < len(str(answer_2_value)) else " " * 0
-    lenght_to_add_2 = " " * to_add if len(str(answer_1_value)) > len(str(answer_2_value)) else " " * 0
+    length_to_add_1 = " " * to_add if len(str(answer_1_value)) < len(str(answer_2_value)) else " " * 0
+    length_to_add_2 = " " * to_add if len(str(answer_1_value)) > len(str(answer_2_value)) else " " * 0
 
-    indetation = " " * 2
-    print(f"\n{indetation}{YEAR} > {DAY}")
-    print(f"{indetation*2}Answer 1: {answer_1_value}{lenght_to_add_1} | {answer_1_time:.3f} ms")
-    print(f"{indetation*2}Answer 2: {answer_2_value}{lenght_to_add_2} | {answer_2_time:.3f} ms\n")
+    indentation = " " * 2
+    print(f"\n{indentation}{YEAR} > {DAY}")
+    print(f"{indentation*2}Answer 1: {answer_1_value}{length_to_add_1} | {answer_1_time:.3f} ms")
+    print(f"{indentation*2}Answer 2: {answer_2_value}{length_to_add_2} | {answer_2_time:.3f} ms\n")
 
 
 ##########
