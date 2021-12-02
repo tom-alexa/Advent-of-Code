@@ -11,7 +11,7 @@ from pathlib import PurePath
 YEAR = 2020
 DAY = 12
 
-INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input")
+INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input.txt")
 
 START_POS = (0, 0)
 WAYPOINT_START = (10, -1)

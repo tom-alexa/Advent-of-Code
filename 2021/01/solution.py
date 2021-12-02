@@ -11,7 +11,7 @@ from pathlib import PurePath
 YEAR = 2021
 DAY = 1
 
-INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input")
+INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input.txt")
 
 
 ###########
@@ -22,11 +22,6 @@ def get_data_from_input():
     with open(INPUT_FILE, "r") as file:
         depth = list(map(lambda x: int(x.strip()), file.readlines()))
     return depth
-
-
-###############
-#  functions  #
-###############
 
 
 #############

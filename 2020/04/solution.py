@@ -11,7 +11,7 @@ from pathlib import PurePath
 YEAR = 2020
 DAY = 4
 
-INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input")
+INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input.txt")
 
 PROPERTIES = {"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid", "cid"}
 NOT_COMPULSORY_PROPERTIES = {"cid"}

@@ -1,20 +1,17 @@
 import time
 from pathlib import PurePath
 
-# --- Day 3: Toboggan Trajectory ---
+# --- Day 2: Dive! ---
 
 
 ###############
 #  constants  #
 ###############
 
-YEAR = 2020
-DAY = 3
+YEAR = 2021
+DAY = 2
 
 INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input.txt")
-
-JUMP_1 = (3, 1)
-JUMPS = {(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)}
 
 
 ###########
@@ -22,48 +19,58 @@ JUMPS = {(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)}
 ###########
 
 def get_data_from_input():
-    grid = []
     with open(INPUT_FILE, "r") as file:
-        for line in file.readlines():
-            grid.append(line.strip())
-    return grid
+        moves = list(map(dictionary, file.readlines()))
+    return moves
 
 
 ###############
 #  functions  #
 ###############
 
-def get_tree_encounters(grid, x_jump, y_jump):
-    trees = 0
-    x = 0
-    y = 0
-    while y < len(grid):
-        line = grid[y]
-        if line[x] == "#":
-            trees += 1
-        x = (x + x_jump) % len(line)
-        y += y_jump
-    return trees
+def dictionary(line):
+    direction, length = line.strip().split(" ")
+    length = int(length)
+    return {"direction": direction, "length": length}
 
 
 #############
 #  answers  #
 #############
 
-def get_answer_1(grid):
+def get_answer_1(moves):
     time_start = time.perf_counter()
-    trees = get_tree_encounters(grid, JUMP_1[0], JUMP_1[1])
+
+    position = {"horizontal": 0, "depth": 0}
+    for move in moves:
+        if move["direction"] == "forward":
+            position["horizontal"] += move["length"]
+        elif move["direction"] == "down":
+            position["depth"] += move["length"]
+        elif move["direction"] == "up":
+            position["depth"] -= move["length"]
+    multiply = position["horizontal"] * position["depth"]
+
     time_spent = time.perf_counter() - time_start
-    return {"value": trees, "time": time_spent}
+    return {"value": multiply, "time": time_spent}
 
 
-def get_answer_2(grid):
+def get_answer_2(moves):
     time_start = time.perf_counter()
-    trees = 1
-    for jump in JUMPS:
-        trees *= get_tree_encounters(grid, jump[0], jump[1])
+
+    position = {"horizontal": 0, "depth": 0, "aim": 0}
+    for move in moves:
+        if move["direction"] == "forward":
+            position["horizontal"] += move["length"]
+            position["depth"] += (move["length"] * position["aim"])
+        elif move["direction"] == "down":
+            position["aim"] += move["length"]
+        elif move["direction"] == "up":
+            position["aim"] -= move["length"]
+    multiply = position["horizontal"] * position["depth"]
+
     time_spent = time.perf_counter() - time_start
-    return {"value": trees, "time": time_spent}
+    return {"value": multiply, "time": time_spent}
 
 
 ###########

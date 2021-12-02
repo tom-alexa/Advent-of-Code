@@ -1,7 +1,7 @@
 import os
 from main import INDENTATION, TO_REMEMBER, get_file
 
-FILE_NAME = "input"
+FILE_NAME = "input.txt"
 
 
 def get_last_used_data():

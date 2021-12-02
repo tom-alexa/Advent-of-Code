@@ -11,7 +11,7 @@ from pathlib import PurePath
 YEAR = 2020
 DAY = 9
 
-INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input")
+INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input.txt")
 
 PREAMBLE_LENGTH = 25
 

@@ -2,7 +2,7 @@ import os
 from pathlib import PurePath
 
 INDENTATION = " " * 2
-TO_REMEMBER = "src/to_remember"
+TO_REMEMBER = "src/to_remember.txt"
 FILE_NAME = "solution.py"
 
 
