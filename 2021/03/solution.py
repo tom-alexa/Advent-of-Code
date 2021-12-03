@@ -1,7 +1,7 @@
 import time
 from pathlib import PurePath
 
-# --- Day 2: Dive! ---
+# --- Day 3: Binary Diagnostic ---
 
 
 ###############
@@ -9,7 +9,7 @@ from pathlib import PurePath
 ###############
 
 YEAR = 2021
-DAY = 2
+DAY = 3
 
 INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input.txt")
 
@@ -20,56 +20,63 @@ INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input.txt")
 
 def get_data_from_input():
     with open(INPUT_FILE, "r") as file:
-        return list(map(dictionary, file.readlines()))
+        return list(map(lambda x: x.strip(), file.readlines()))
 
 
 ###############
 #  functions  #
 ###############
 
-def dictionary(line):
-    direction, length = line.strip().split(" ")
-    length = int(length)
-    return {"direction": direction, "length": length}
+def filtering(numbers, by_value):
+    length = len(numbers[0])
+    numbers = numbers.copy()
+    for i in range(length):
+        if len(numbers) == 1:
+            break
+        zeros = []
+        ones = []
+        for number in numbers:
+            if number[i] == "0":
+                zeros.append(number)
+            else:
+                ones.append(number)
+        if by_value == "1":
+            numbers = ones if len(ones) >= len(zeros) else zeros
+        else:   # by_value == "0"
+            numbers = ones if len(ones) < len(zeros) else zeros
+    return int(numbers[0], 2)
 
 
 #############
 #  answers  #
 #############
 
-def get_answer_1(moves):
+def get_answer_1(binary_numbers):
     time_start = time.perf_counter()
 
-    position = {"horizontal": 0, "depth": 0}
-    for move in moves:
-        if move["direction"] == "forward":
-            position["horizontal"] += move["length"]
-        elif move["direction"] == "down":
-            position["depth"] += move["length"]
-        elif move["direction"] == "up":
-            position["depth"] -= move["length"]
-    multiply = position["horizontal"] * position["depth"]
+    counter = {i: 0 for i in range(len(binary_numbers[0]))}
+    for number in binary_numbers:
+        for i, char in enumerate(number):
+            counter[i] += 1 if char == "1" else -1
+    gamma_rate = ""
+    epsilon_rate = ""
+    for i in range(len(binary_numbers[0])):
+        gamma_rate += "1" if counter[i] >= 0 else "0"
+        epsilon_rate += "0" if counter[i] >= 0 else "1"
+    multiply = int(gamma_rate, 2) * int(epsilon_rate, 2)
 
     time_spent = time.perf_counter() - time_start
     return {"value": multiply, "time": time_spent}
 
 
-def get_answer_2(moves):
+def get_answer_2(binary_numbers):
     time_start = time.perf_counter()
 
-    position = {"horizontal": 0, "depth": 0, "aim": 0}
-    for move in moves:
-        if move["direction"] == "forward":
-            position["horizontal"] += move["length"]
-            position["depth"] += (move["length"] * position["aim"])
-        elif move["direction"] == "down":
-            position["aim"] += move["length"]
-        elif move["direction"] == "up":
-            position["aim"] -= move["length"]
-    multiply = position["horizontal"] * position["depth"]
+    oxygen_generator_rating = filtering(binary_numbers, "1")
+    co2_scrubber_rating = filtering(binary_numbers, "0")
 
     time_spent = time.perf_counter() - time_start
-    return {"value": multiply, "time": time_spent}
+    return {"value": oxygen_generator_rating * co2_scrubber_rating, "time": time_spent}
 
 
 ###########
