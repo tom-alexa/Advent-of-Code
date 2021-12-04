@@ -28,7 +28,7 @@ def get_data_from_input():
 ###############
 
 def play(starting_numbers, turns):
-    if turns > 20000000:
+    if turns > 10000000:
         print()
         indentation = " " * 6
 
