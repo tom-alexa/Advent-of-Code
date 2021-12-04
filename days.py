@@ -1,5 +1,5 @@
 
-# script prints all days that user can use
+# script prints all days that has been solved by myself
 
 # constants
 FIRST_YEAR = 2015
@@ -15,7 +15,7 @@ DAY_INDENTATION = " " * 8
 # days
 COMPLETED_DAYS = {
     2020: {
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
     },
     2021: {
         1, 2, 3, 4,
