@@ -13,8 +13,6 @@ DAY = 11
 
 INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input.txt")
 
-ESTIMATED_TIME = "5 sec"
-
 TO_BE_EMPTY = {"empty": 0, "occupied": {1: 3, 2: 4}}
 
 
@@ -112,6 +110,7 @@ def get_occupied_seats(part, seat_layout):
 def get_answer_1(seat_layout):
     time_start = time.perf_counter()
     occupied_seats = get_occupied_seats(1, seat_layout)
+    print("\n      Part 1: Complete")
     time_spent = time.perf_counter() - time_start
     return {"value": occupied_seats, "time": time_spent}
 
@@ -119,6 +118,7 @@ def get_answer_1(seat_layout):
 def get_answer_2(seat_layout):
     time_start = time.perf_counter()
     occupied_seats = get_occupied_seats(2, seat_layout)
+    print("      Part 2: Complete")
     time_spent = time.perf_counter() - time_start
     return {"value": occupied_seats, "time": time_spent}
 
@@ -127,26 +127,20 @@ def get_answer_2(seat_layout):
 #  print  #
 ###########
 
-def print_estimated_time():
-    indentation = " " * 2
-    print(f"\n{indentation*3}Estimated time: {ESTIMATED_TIME}")
-
-
-def print_answer_1(answer_1):
+def print_answers(answer_1, answer_2):
     answer_1_value = answer_1["value"]
+    answer_2_value = answer_2["value"]
     answer_1_time = round(answer_1["time"], 3)
+    answer_2_time = round(answer_2["time"], 3)
+
+    to_add = abs(len(str(answer_1_value)) - len(str(answer_2_value)))
+    length_to_add_1 = " " * to_add if len(str(answer_1_value)) < len(str(answer_2_value)) else " " * 0
+    length_to_add_2 = " " * to_add if len(str(answer_1_value)) > len(str(answer_2_value)) else " " * 0
 
     indentation = " " * 2
     print(f"\n{indentation}{YEAR} > {DAY}")
-    print(f"{indentation*2}Answer 1: {answer_1_value} | {answer_1_time:.3f} sec")
-
-
-def print_answer_2(answer_2):
-    answer_2_value = answer_2["value"]
-    answer_2_time = round(answer_2["time"], 3)
-
-    indentation = " " * 2
-    print(f"{indentation*2}Answer 2: {answer_2_value} | {answer_2_time:.3f} sec\n")
+    print(f"{indentation*2}Answer 1: {answer_1_value}{length_to_add_1} | {answer_1_time:.3f} s")
+    print(f"{indentation*2}Answer 2: {answer_2_value}{length_to_add_2} | {answer_2_time:.3f} s\n")
 
 
 ##########
@@ -154,12 +148,10 @@ def print_answer_2(answer_2):
 ##########
 
 def main():
-    print_estimated_time()
     puzzle_input = get_data_from_input()
     answer_1 = get_answer_1(puzzle_input)
-    print_answer_1(answer_1)
     answer_2 = get_answer_2(puzzle_input)
-    print_answer_2(answer_2)
+    print_answers(answer_1, answer_2)
 
 
 if __name__ == "__main__":

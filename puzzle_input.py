@@ -39,7 +39,8 @@ def get_editor(data):
             editor = input(f"{INDENTATION*2}Editor: ")
             if editor:
                 break
-    return data["editor"]
+    data["editor"] = editor
+    return editor
 
 
 def update_last_data(data, file_path):
