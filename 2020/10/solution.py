@@ -18,7 +18,7 @@ INPUT_FILE = PurePath(f"{YEAR:04}/{DAY:02}/input.txt")
 #  input  #
 ###########
 
-def get_data_from_input():
+def parse_input():
     with open(INPUT_FILE, "r") as file:
         return [ int(line.strip()) for line in file.readlines() ]
 
@@ -100,7 +100,7 @@ def print_answers(answer_1, answer_2):
 ##########
 
 def main():
-    puzzle_input = get_data_from_input()
+    puzzle_input = parse_input()
     answer_1 = get_answer_1(puzzle_input)
     answer_2 = get_answer_2(puzzle_input)
     print_answers(answer_1, answer_2)
