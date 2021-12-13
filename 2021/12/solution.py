@@ -27,7 +27,7 @@ def parse_input():
 #  functions  #
 ###############
 
-def make_cave_system(rough_map):
+def create_cave_system(rough_map):
     cave_system = {}
     for caves in rough_map:
         if caves[0] not in cave_system:
@@ -59,7 +59,7 @@ def count_paths(cave, been_there, cave_system, small_count=1):
 
 def get_answer_1(rough_map):
     time_start = time.perf_counter()
-    cave_system = make_cave_system(rough_map)
+    cave_system = create_cave_system(rough_map)
     total = count_paths("start", set(), cave_system)
     time_spent = time.perf_counter() - time_start
     return {"value": total, "time": time_spent}
@@ -67,7 +67,7 @@ def get_answer_1(rough_map):
 
 def get_answer_2(rough_map):
     time_start = time.perf_counter()
-    cave_system = make_cave_system(rough_map)
+    cave_system = create_cave_system(rough_map)
     total = count_paths("start", set(), cave_system, small_count=2)
     time_spent = time.perf_counter() - time_start
     return {"value": total, "time": time_spent}
